@@ -1,6 +1,20 @@
 import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
+import fs from 'fs'
+
+const print = console.log;
+
+// const getAllData = (txt) = {
+//   const data = [];
+//   const text = fs.readFileSync(txt);
+//   const lines = text.split('\n');
+//   for (line in lines) {
+//     data.push(JSON.parse(line));
+//   }
+//   print(data)
+//   return data;
+// }
 
 class BooksApp extends React.Component {
   state = {
@@ -10,8 +24,11 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false
+    showSearchPage: false,
+    // allBooksInfo: {() => getAllData('./data/bookInfoArr.txt')},
   }
+
+
 
   render() {
     return (
@@ -40,7 +57,7 @@ class BooksApp extends React.Component {
         ) : (
           <div className="list-books">
             <div className="list-books-title">
-              <h1>MyReads</h1>
+              <h1>Junhui's books</h1>
             </div>
             <div className="list-books-content">
               <div>
@@ -49,6 +66,7 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       <li>
+                        //Book component
                         <div className="book">
                           <div className="book-top">
                             <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")' }}></div>
@@ -203,4 +221,4 @@ class BooksApp extends React.Component {
   }
 }
 
-export default BooksApp
+export default BooksApp;

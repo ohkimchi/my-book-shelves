@@ -1,0 +1,69 @@
+import React from "react";
+import styled from "styled-components";
+import Book from "./Book";
+
+const BookShelf = styled.div`
+  padding: 0 10px 20px;
+`;
+
+const BookShelfTitle = styled.h3`
+  border-bottom: 1px solid LightSteelBlue;
+`;
+
+const BookShelfBooks = styled.div`
+  text-align: center;
+`;
+
+const BooksGrid = styled.ol`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+
+const Shelf = props => {
+  const { shelfType, BookInfoArray } = this.props;
+
+  return (
+    <BookShelf>
+      <BookShelfTitle>{shelfType}</BookShelfTitle>
+      <BookShelfBooks>
+        <BooksGrid>
+          <li>
+            //Book component
+            <div className="book">
+              <div className="book-top">
+                <div
+                  className="book-cover"
+                  style={{
+                    width: 128,
+                    height: 193,
+                    backgroundImage:
+                      'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")'
+                  }}
+                />
+                <div className="book-shelf-changer">
+                  <select>
+                    <option value="move" disabled>
+                      Move to...
+                    </option>
+                    <option value="currentlyReading">Currently Reading</option>
+                    <option value="wantToRead">Want to Read</option>
+                    <option value="read">Read</option>
+                    <option value="none">None</option>
+                  </select>
+                </div>
+              </div>
+              <div className="book-title">To Kill a Mockingbird</div>
+              <div className="book-authors">Harper Lee</div>
+            </div>
+          </li>
+        </BooksGrid>
+      </BookShelfBooks>
+    </BookShelf>
+  );
+};
+
+export default Shelf;
