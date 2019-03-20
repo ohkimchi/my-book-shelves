@@ -1,27 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Book from "./Book";
-
-const BookShelf = styled.div`
-  padding: 0 10px 20px;
-`;
-
-const BookShelfTitle = styled.h3`
-  border-bottom: 1px solid LightSteelBlue;
-`;
-
-const BookShelfBooks = styled.div`
-  text-align: center;
-`;
-
-const BooksGrid = styled.ol`
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
+import { BookShelf, BookShelfTitle, BookShelfBooks, BooksGrid } from "./styled-components/StyledElements";
 
 const Shelf = props => {
   const { shelfType, BookInfoArray } = this.props;

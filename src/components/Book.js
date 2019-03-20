@@ -1,46 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
-const Card = styled.div`
-  width: 140px;
-`;
-
-const BookTop = styled.div`
-  position: relative;
-  height: 200px;
-  display: flex;
-  align-items: flex-end;
-`;
-
-const BookCover = styled.div`
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  background: #eee;
-`;
-
-const BookShelfChanger = styled.div`
-  position: absolute;
-  right: 0;
-  bottom: -10px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #60ac5d;
-  background-image: url("./icons/arrow-drop-down.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 20px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-`;
-
-const BookTitle = styled.div`
-  font-size: 0.8em;
-  margin-top: 10px;
-`;
-
-const BookAuthor = styled.div`
-  font-size: 0.8em;
-  color: #999;
-`;
+import { Card, BookTop, BookCover, BookShelfChanger, BookTitle, BookAuthor } from "./styled-components/StyledElements";
 
 class Book extends Component {
   constructor(props) {
