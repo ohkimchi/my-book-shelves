@@ -1,8 +1,7 @@
-import React, { Component } from "react";
 import styled from "styled-components";
 
 // Main page
-export const ShelfList extends Component = styled.div`
+export const ShelfList = styled.div`
   padding: 0 0 80px;
   flex: 1;
 `;
@@ -57,17 +56,21 @@ export const BookShelfTitle = styled.h3`
   border-bottom: 1px solid LightSteelBlue;
 `;
 
-export const BookShelfBooks = styled.div`
+export const BookShelfBooks = styled.section`
   text-align: center;
-`;
-
-export const BooksGrid = styled.ol`
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  
+  > ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    > li {
+      padding: 10px 15px;
+      text-align: left;
+    }
+  }
 `;
 
 // Search

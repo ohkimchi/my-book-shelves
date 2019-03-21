@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import { Card, BookTop, BookCover, BookShelfChanger, BookTitle, BookAuthor } from "./styled-components/StyledElements";
+import { Card, BookTop, BookCover, BookShelfChanger, BookTitle, BookAuthor, Li } from "./styled-components/StyledElements";
 
 class Book extends Component {
   constructor(props) {
@@ -11,7 +10,7 @@ class Book extends Component {
   }
 
   render() {
-    const { title, author, thumbnail, shelf } = this.props;
+    const { title, author, thumbnail, shelf } = this.props.info;
     return (
       <Card>
         <BookTop>
@@ -21,7 +20,7 @@ class Book extends Component {
               width: 128,
               height: 193,
               backgroundImage:
-                'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")'
+                'url('+thumbnail+')'
             }}
           />
           <BookShelfChanger>
