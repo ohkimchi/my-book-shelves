@@ -1,9 +1,11 @@
+/* eslint import/no-webpack-loader-syntax: off */
 import React, { Component } from 'react';
 // import * as BooksAPI from './BooksAPI'
 import './App.css';
 // import styled from "styled-components";
 import { getAllData } from './utils/allFuncs';
 import Data from './utils/bookInfoArr.json';
+// import parseJson from 'parse-json';
 // const Data = require('json-loader!./utils/bookInfoArr');
 
 // import { Search } from './components/Search';
@@ -27,6 +29,9 @@ class BooksApp extends Component {
   }
 
   componentDidMount() {
+    this.setState({
+      updatedData: getAllData(Data)
+    });
     // this.state.updatedData = this.state.firstTimeLoad ? this.initialData : this.updateAllData;
   }
 
@@ -37,7 +42,7 @@ class BooksApp extends Component {
 
 
   render() {
-    print(Data);
+    console.log(Data)
     print(getAllData(Data));
 
     return (
