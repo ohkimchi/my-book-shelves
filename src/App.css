@@ -91,11 +91,6 @@ button:active {
 }
 /* books grid */
 
-.books-grid li {
-  padding: 10px 15px;
-  text-align: left;
-}
-
 .book-shelf-changer select {
   width: 100%;
   height: 100%;

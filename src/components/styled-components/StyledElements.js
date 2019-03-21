@@ -1,8 +1,7 @@
-import React, { Component } from "react";
 import styled from "styled-components";
 
 // Main page
-export const ShelfList extends Component = styled.div`
+export const ShelfList = styled.div`
   padding: 0 0 80px;
   flex: 1;
 `;
@@ -69,6 +68,11 @@ export const BooksGrid = styled.ol`
   justify-content: center;
   flex-wrap: wrap;
 `;
+
+export const Li = styled.ol`
+  padding: 10px 15px;
+  text-align: left;
+`
 
 // Search
 export const SearchBar = styled.div`
