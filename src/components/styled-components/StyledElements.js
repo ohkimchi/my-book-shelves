@@ -73,6 +73,11 @@ export const BookShelfBooks = styled.section`
   }
 `;
 
+export const Li = styled.ol`
+  padding: 10px 15px;
+  text-align: left;
+`
+
 // Search
 export const SearchBar = styled.div`
   position: fixed;
