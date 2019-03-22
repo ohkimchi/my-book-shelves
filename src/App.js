@@ -2,17 +2,11 @@
 import React, { Component } from 'react'
 import { Link, Route } from 'react-router-dom'
 import './App.css'
-import styled from "styled-components"
 import { getAllDataFromJson, filterBooksByStatus } from './utils/allFuncs'
 import Data from './utils/bookInfoArr.json'
 import Shelf from './components/Shelf'
 import Search from './components/Search'
-// import { ShelfList } from './components/styled-components/StyledComponents';
-
-const ShelfList = styled.div`
-  padding: 0 0 80px;
-  flex: 1;
-`;
+import { ShelfList } from './components/styled-components/StyledElements';
 
 class BooksApp extends Component {
   constructor() {
