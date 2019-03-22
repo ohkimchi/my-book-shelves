@@ -1,12 +1,12 @@
 /* eslint import/no-webpack-loader-syntax: off */
-import React, { Component } from 'react';
-// import * as BooksAPI from './BooksAPI'
-import './App.css';
-import styled from "styled-components";
-import { getAllDataFromJson, filterBooksByStatus } from './utils/allFuncs';
-import Data from './utils/bookInfoArr.json';
-import Shelf from './components/Shelf';
-import Search from './components/Search';
+import React, { Component } from 'react'
+import { Link, Route } from 'react-router-dom'
+import './App.css'
+import styled from "styled-components"
+import { getAllDataFromJson, filterBooksByStatus } from './utils/allFuncs'
+import Data from './utils/bookInfoArr.json'
+import Shelf from './components/Shelf'
+import Search from './components/Search'
 // import { ShelfList } from './components/styled-components/StyledComponents';
 
 const ShelfList = styled.div`
@@ -19,7 +19,6 @@ class BooksApp extends Component {
     super();
     this.state = {
       firstTimeLoad: true,
-      showSearchPage: false,
       initialData: getAllDataFromJson(Data),
       updatedData: [],
       allShelves: filterBooksByStatus(getAllDataFromJson(Data))
@@ -57,19 +56,10 @@ class BooksApp extends Component {
     return allShelves;
   }
 
-  updateAllData = () => {
-
-  }
-
-
-
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <Search data={this.state.updatedData}
-                  onShelfChange={this.onShelfChange} />
-        ) : (
+        <Route exact path='/' render={() => (
           <div className="list-books">
             <div className="list-books-title">
               <h1>Junhui's books</h1>
@@ -80,10 +70,16 @@ class BooksApp extends Component {
               </div>
             </ShelfList>
             <div className="open-search">
-              <button onClick={() => this.setState({ showSearchPage: true })}>Search a book</button>
+              <Link to='/search'>
+                <button>Search a book</button>
+              </Link>
             </div>
           </div>
-        )}
+        )} />
+        <Route path='/search' render={() => (
+          <Search data={this.state.updatedData}
+                  onShelfChange={this.onShelfChange} />
+        )} />
       </div>
     )
   }

@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import { SearchBar, SearchResult } from "./styled-components/StyledElements";
-import Shelf from './Shelf';
+import React, { Component } from "react"
+import { Link } from 'react-router-dom'
+import { SearchBar, SearchResult } from "./styled-components/StyledElements"
+import Shelf from './Shelf'
 
 class Search extends Component {
   constructor(props) {
@@ -19,19 +20,19 @@ class Search extends Component {
 
   getTargetData = (inputStr) => {
     return inputStr ?
-      this.props.data.filter(d => {
-        if (d.title.toLowerCase().includes(inputStr.toLowerCase()) ||
-          d.author.toLowerCase().includes(inputStr.toLowerCase())) {
-          return d;
-        }
-      }) : this.props.data;
+      this.props.data.filter(d =>
+        (d.title.toLowerCase().includes(inputStr.toLowerCase()) ||
+            d.author.toLowerCase().includes(inputStr.toLowerCase())))
+      : this.props.data;
   }
 
   render() {
     return (
       <div>
         <SearchBar>
-          <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
+          <Link to="/">
+            <button className="close-search">Close</button>
+          </Link>
           <div className="search-books-input-wrapper">
             <input type="text"
                    placeholder="Search by title or author"
