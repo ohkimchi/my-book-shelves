@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 // import * as BooksAPI from './BooksAPI'
 import './App.css';
 import styled from "styled-components";
-import { getAllDataFromJson, filterBooksByStatus, renderShelf } from './utils/allFuncs';
+import { getAllDataFromJson, filterBooksByStatus } from './utils/allFuncs';
 import Data from './utils/bookInfoArr.json';
+import Shelf from './components/Shelf';
 // import { Search } from './components/Search';
 // import { ShelfList } from './components/styled-components/StyledComponents';
 
@@ -14,12 +15,16 @@ const ShelfList = styled.div`
 `;
 
 class BooksApp extends Component {
-  state = {
-    firstTimeLoad: true,
-    showSearchPage: false,
-    initialData: getAllDataFromJson(Data),
-    updatedData: [],
-    allShelves: filterBooksByStatus(getAllDataFromJson(Data))
+  constructor() {
+    super();
+    this.state = {
+      firstTimeLoad: true,
+      showSearchPage: false,
+      initialData: getAllDataFromJson(Data),
+      updatedData: [],
+      allShelves: filterBooksByStatus(getAllDataFromJson(Data))
+    };
+    this.onShelfChange = this.onShelfChange.bind(this);
   }
 
   componentDidMount() {
@@ -29,10 +34,25 @@ class BooksApp extends Component {
     });
   }
 
+  onShelfChange = (oldBookInfo, book) => {
+    let oldUpdatedData = this.state.updatedData;
+    let index = oldUpdatedData.indexOf(oldBookInfo);
+    if (~index) {
+      oldUpdatedData[index] = book;
+    }
+    this.setState({
+      updatedData: oldUpdatedData
+    });
+  }
+
   displayAllShelves = () => {
     const shelves = filterBooksByStatus(this.state.updatedData);
     const allShelves = shelves.map(shelf => {
-      return shelf.length === 0 ? [] : renderShelf(shelf)
+      return shelf.length === 0 ? [] :
+        (<Shelf key={`shelf-${shelf[0].shelf}`}
+                shelfType={shelf[0].shelf}
+                BookInfoArray={shelf}
+                onShelfChange={this.onShelfChange} />)
     });
     return allShelves;
   }

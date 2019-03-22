@@ -1,7 +1,3 @@
-import React from 'react';
-import Shelf from '../components/Shelf';
-import Book from '../components/Book';
-
 export const getAllDataFromJson = data => {
   let dataArray = [];
   data.map(d => {
@@ -35,14 +31,46 @@ export const filterBooksByStatus = data => {
   return [reading, toRead, haveRead, noneDefined];
 }
 
-export const renderShelf = data => {
-  return data === [] ? null :
-    (<Shelf shelfType={data[0].shelf} BookInfoArray={data} />)
+export const translateChinToEng = chin => {
+  let eng = "";
+  switch (chin) {
+    case "在读":
+      eng = "Currently Reading";
+      break;
+    case "想读":
+      eng = "Want to Read";
+      break;
+    case "读过":
+      eng = "Read";
+      break;
+    case "NoneDefined":
+      eng = "None";
+      break;
+    default:
+      eng = "None";
+      break;
+  }
+  return eng;
+}
 
-};
-
-export const renderBook = data => {
-  return (
-    <Book info={data} />
-  )
+export const translateEngToChin = eng => {
+  let chin = "";
+  switch (eng) {
+    case "Currently Reading":
+      chin = "在读";
+      break;
+    case "Want to Read":
+      chin = "想读";
+      break;
+    case "Read":
+      chin = "读过";
+      break;
+    case "None":
+      chin = "NoneDefined";
+      break;
+    default:
+      chin = "NoneDefined";
+      break;
+  }
+  return chin;
 }

@@ -1,19 +1,21 @@
 import React from "react";
-import { BookShelf, BookShelfTitle, BookShelfBooks, BooksGrid } from "./styled-components/StyledElements";
-import { renderBook } from '../utils/allFuncs';
+import { BookShelf, BookShelfTitle, BookShelfBooks } from "./styled-components/StyledElements";
+import { translateChinToEng } from '../utils/allFuncs';
+import Book from './Book';
 
 const Shelf = props => {
-  const { shelfType, BookInfoArray } = props;
+  const { shelfType, BookInfoArray, onShelfChange } = props;
+  const shelfTypeEng = translateChinToEng(shelfType);
 
   return (
     <BookShelf>
-      <BookShelfTitle>{shelfType}</BookShelfTitle>
+      <BookShelfTitle>{shelfTypeEng}</BookShelfTitle>
       <BookShelfBooks>
         <ol>
-          { BookInfoArray.map(book => {
+          { BookInfoArray.map((book, index) => {
             return (
-              <li>
-                {renderBook(book)}
+              <li key={`${shelfTypeEng}-${index}`}>
+                <Book info={book} onShelfChange={onShelfChange}/>
               </li>);
           })}
         </ol>

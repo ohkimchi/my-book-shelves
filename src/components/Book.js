@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Card, BookTop, BookCover, BookShelfChanger, BookTitle, BookAuthor, Li } from "./styled-components/StyledElements";
+import { Card, BookTop, BookCover, BookTitle, BookAuthor } from "./styled-components/StyledElements";
+import SelectShelf from './SelectShelf';
+import { translateChinToEng } from '../utils/allFuncs';
 
 class Book extends Component {
   constructor(props) {
@@ -10,30 +12,24 @@ class Book extends Component {
   }
 
   render() {
-    const { title, author, thumbnail, shelf } = this.props.info;
+    const { info, onShelfChange } = this.props;
+    const { title, author, thumbnail, shelf } = info;
+    const shelfEng = translateChinToEng(shelf);
     return (
       <Card>
         <BookTop>
-          <div
-            className="book-cover"
+          <BookCover
             style={{
               width: 128,
               height: 193,
+              backgroundSize: "contain",
               backgroundImage:
                 'url('+thumbnail+')'
             }}
           />
-          <BookShelfChanger>
-            <select>
-              <option value="move" disabled>
-                Move to...
-              </option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </BookShelfChanger>
+          <SelectShelf shelf={shelfEng}
+                       onShelfChange={onShelfChange}
+                       book={info} />
         </BookTop>
         <BookTitle>{title}</BookTitle>
         <BookAuthor>{author}</BookAuthor>
