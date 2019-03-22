@@ -13,7 +13,6 @@ class BooksApp extends Component {
   constructor() {
     super();
     this.state = {
-      firstTimeLoad: true,
       updatedData: getAllDataFromJson(Data),
       allShelves: filterBooksByStatus(getAllDataFromJson(Data))
     };
@@ -27,7 +26,6 @@ class BooksApp extends Component {
       oldUpdatedData[index] = book;
     }
     this.setState({
-      firstTimeLoad: false,
       updatedData: oldUpdatedData
     });
   }
