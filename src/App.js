@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { getAllDataFromJson, filterBooksByStatus } from './utils/allFuncs';
 import Data from './utils/bookInfoArr.json';
 import Shelf from './components/Shelf';
-// import { Search } from './components/Search';
+import Search from './components/Search';
 // import { ShelfList } from './components/styled-components/StyledComponents';
 
 const ShelfList = styled.div`
@@ -67,7 +67,8 @@ class BooksApp extends Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          {/*<Search />*/}
+          <Search data={this.state.updatedData}
+                  onShelfChange={this.onShelfChange} />
         ) : (
           <div className="list-books">
             <div className="list-books-title">
@@ -78,9 +79,9 @@ class BooksApp extends Component {
                 { this.displayAllShelves() }
               </div>
             </ShelfList>
-            {/*<div className="open-search">*/}
-              {/*<button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>*/}
-            {/*</div>*/}
+            <div className="open-search">
+              <button onClick={() => this.setState({ showSearchPage: true })}>Search a book</button>
+            </div>
           </div>
         )}
       </div>
