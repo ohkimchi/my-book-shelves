@@ -20,7 +20,7 @@ export const filterBooksByStatus = data => {
         haveRead.push(d);
         break;
       case "NoneDefined":
-        noneDefined.puhs(d);
+        noneDefined.push(d);
         break;
       default:
         noneDefined.puhs(d);

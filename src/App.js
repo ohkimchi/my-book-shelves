@@ -1,6 +1,7 @@
 /* eslint import/no-webpack-loader-syntax: off */
 import React, { Component } from 'react'
 import { Link, Route } from 'react-router-dom'
+import SimpleStorage from 'react-simple-storage'
 import './App.css'
 import { getAllDataFromJson, filterBooksByStatus } from './utils/allFuncs'
 import Data from './utils/bookInfoArr.json'
@@ -13,18 +14,10 @@ class BooksApp extends Component {
     super();
     this.state = {
       firstTimeLoad: true,
-      initialData: getAllDataFromJson(Data),
-      updatedData: [],
+      updatedData: getAllDataFromJson(Data),
       allShelves: filterBooksByStatus(getAllDataFromJson(Data))
     };
     this.onShelfChange = this.onShelfChange.bind(this);
-  }
-
-  componentDidMount() {
-    const updatedData = this.state.firstTimeLoad ? this.state.initialData: this.state.updatedData;
-    this.setState({
-        updatedData: updatedData
-    });
   }
 
   onShelfChange = (oldBookInfo, book) => {
@@ -34,6 +27,7 @@ class BooksApp extends Component {
       oldUpdatedData[index] = book;
     }
     this.setState({
+      firstTimeLoad: false,
       updatedData: oldUpdatedData
     });
   }
@@ -53,6 +47,7 @@ class BooksApp extends Component {
   render() {
     return (
       <div className="app">
+        <SimpleStorage parent={this} />
         <Route exact path='/' render={() => (
           <div className="list-books">
             <div className="list-books-title">
