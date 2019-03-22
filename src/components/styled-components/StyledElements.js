@@ -20,6 +20,10 @@ export const BookTop = styled.div`
 export const BookCover = styled.div`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   background: #eee;
+  width: 128px;
+  height: 193px;
+  background-size: contain;
+  background-image: url(${props => props.img});
 `;
 
 export const BookShelfChanger = styled.div`

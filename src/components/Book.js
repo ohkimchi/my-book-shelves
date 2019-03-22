@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Card, BookTop, BookCover, BookTitle, BookAuthor } from "./styled-components/StyledElements";
-import SelectShelf from './SelectShelf';
-import { translateChinToEng } from '../utils/allFuncs';
+import React, { Component } from "react"
+import LazyLoad from 'react-lazyload'
+import { Card, BookTop, BookCover, BookTitle, BookAuthor } from "./styled-components/StyledElements"
+import SelectShelf from './SelectShelf'
+import { translateChinToEng } from '../utils/allFuncs'
 
 class Book extends Component {
   constructor(props) {
@@ -18,15 +19,9 @@ class Book extends Component {
     return (
       <Card>
         <BookTop>
-          <BookCover
-            style={{
-              width: 128,
-              height: 193,
-              backgroundSize: "contain",
-              backgroundImage:
-                'url('+thumbnail+')'
-            }}
-          />
+          <LazyLoad debounce={false} throttle={250} once>
+            <BookCover img={thumbnail} />
+          </LazyLoad>
           <SelectShelf shelf={shelfEng}
                        onShelfChange={onShelfChange}
                        book={info} />
