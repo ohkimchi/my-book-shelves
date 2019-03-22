@@ -101,3 +101,14 @@ export const SearchBar = styled.div`
 export const SearchResult = styled.div`
   padding: 80px 10px 20px;
 `;
+
+export const SearchBooksInputWrapper = styled.div`
+  flex: 1;
+  > input {
+    width: 100%;
+    padding: 15px 10px;
+    font-size: 1.25em;
+    border: none;
+    outline: none;
+  }
+`

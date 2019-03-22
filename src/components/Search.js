@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link } from 'react-router-dom'
-import { SearchBar, SearchResult } from "./styled-components/StyledElements"
+import { SearchBar, SearchResult, SearchBooksInputWrapper } from "./styled-components/StyledElements"
 import Shelf from './Shelf'
 
 class Search extends Component {
@@ -19,11 +19,11 @@ class Search extends Component {
   }
 
   getTargetData = (inputStr) => {
-    return inputStr ?
+    return inputStr !== '' ?
       this.props.data.filter(d =>
         (d.title.toLowerCase().includes(inputStr.toLowerCase()) ||
             d.author.toLowerCase().includes(inputStr.toLowerCase())))
-      : this.props.data;
+      : [];
   }
 
   render() {
@@ -33,11 +33,11 @@ class Search extends Component {
           <Link to="/">
             <button className="close-search">Close</button>
           </Link>
-          <div className="search-books-input-wrapper">
+          <SearchBooksInputWrapper>
             <input type="text"
                    placeholder="Search by title or author"
                    onChange={this.handleChange} />
-          </div>
+          </SearchBooksInputWrapper>
         </SearchBar>
         <SearchResult>
           { this.state.updatedData !== [] &&

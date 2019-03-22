@@ -12,9 +12,9 @@ const Shelf = props => {
       <BookShelfTitle>{`${shelfTypeEng} (${BookInfoArray.length})`}</BookShelfTitle>
       <BookShelfBooks>
         <ol>
-          { BookInfoArray.map(book => {
+          { BookInfoArray.map((book, index) => {
             return (
-              <li key={`${shelfTypeEng}-${book.title}`}>
+              <li key={`${shelfTypeEng}-${index}-${book.title}`}>
                 <Book info={book} onShelfChange={onShelfChange}/>
               </li>);
           })}
