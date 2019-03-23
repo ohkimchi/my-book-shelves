@@ -19,11 +19,20 @@ class Search extends Component {
   }
 
   getTargetData = (inputStr) => {
-    return inputStr !== '' ?
-      this.props.data.filter(d =>
-        (d.title.toLowerCase().includes(inputStr.toLowerCase()) ||
-            d.author.toLowerCase().includes(inputStr.toLowerCase())))
-      : [];
+    const inputStrArr = inputStr.split(' ');
+    const res = [];
+    inputStrArr.map((inp, index) => {
+      const tempData = inp !== '' ? this.props.data.filter(d =>
+        (d.title.toLowerCase().includes(inp.toLowerCase()) ||
+          d.author.toLowerCase().includes(inp.toLowerCase()))) : [];
+      if (tempData !== []) {
+        tempData.map(d => {
+          return !res.includes(d) && res.push(d);
+        });
+      }
+      return res;
+    })
+    return res;
   }
 
   render() {

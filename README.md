@@ -1,8 +1,8 @@
 Installation and launch instructions:
 
-In case the book covers are not loaded due to a large number of it, please use Brave browser or Firefox.
+In case the book covers are not loaded due to a large number of them, please use Brave browser or Firefox.
 I tested with Chrome and Safari and found the pictures are not loaded. 
-Still in the process of figuring why they are not loaded on the two browsers mentioned above. 
+Still in the process of figuring how to make them load with no delay. 
 
 1. Clone the project by running
 `git clone https://github.com/ohkimchi/my-book-shelves.git`

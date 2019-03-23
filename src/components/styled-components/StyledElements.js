@@ -110,5 +110,6 @@ export const SearchBooksInputWrapper = styled.div`
     font-size: 1.25em;
     border: none;
     outline: none;
+    font-family: 'Monaco', sans-serif;
   }
 `
