@@ -66,7 +66,7 @@ export const BookTitle = styled.div`
 `;
 
 export const BookAuthor = styled.div`
-  font-size: 0.8em;
+  font-size: 0.5em;
   color: #999;
 `;
 
@@ -115,7 +115,6 @@ export const BookShelfBooks = styled.section`
     > li {
       padding: 10px 15px;
       text-align: left;
-      max-height: 350px;
     }
   }
 `;
