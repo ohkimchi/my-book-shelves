@@ -13,3 +13,4 @@ Still in the process of figuring how to make them load with no delay.
 
 4. Run `npm start`
 
+5. Or you can view from this github page: https://ohkimchi.github.io/my-book-shelves/
