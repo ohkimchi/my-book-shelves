@@ -7,7 +7,7 @@ import { getAllDataFromJson, filterBooksByStatus } from './utils/allFuncs'
 import Data from './utils/bookInfoArr.json'
 import Shelf from './components/Shelf'
 import Search from './components/Search'
-import { ShelfList, OpenSearch } from './components/styled-components/StyledElements';
+import { ListBooksTitle, ShelfList, OpenSearch } from './components/styled-components/StyledElements';
 
 class BooksApp extends Component {
   constructor() {
@@ -48,9 +48,9 @@ class BooksApp extends Component {
         <SimpleStorage parent={this} />
         <Route exact path='/' render={() => (
           <div className="list-books">
-            <div className="list-books-title">
+            <ListBooksTitle>
               <h1>Junhui's books</h1>
-            </div>
+            </ListBooksTitle>
             <ShelfList>
               <div>
                 { this.displayAllShelves() }

@@ -2,7 +2,18 @@ import styled from "styled-components"
 import dropDown from "../../icons/arrow-drop-down.svg"
 import arrowBack from "../../icons/arrow-back.svg"
 import search from "../../icons/search.png"
+
 // Main page
+export const ListBooksTitle = styled.div`
+  padding: 10px 0;
+  text-align: center;
+  > h1 {
+    font-weight: 400;
+    margin: 0;
+    color: LightSkyBlue;
+  }
+`;
+
 export const ShelfList = styled.div`
   padding: 0 0 80px;
   flex: 1;
@@ -84,6 +95,9 @@ export const OpenSearch = styled.div`
 // Shelf
 export const BookShelf = styled.div`
   padding: 0 10px 20px;
+  @media (min-width: 600px) {
+    padding: 0 20px 40px;
+  }
 `;
 
 export const BookShelfTitle = styled.h3`
@@ -155,4 +169,4 @@ export const CloseSearchButton = styled.button`
     border: red;
     outline: none;
   }
-`
+`;
