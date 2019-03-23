@@ -1,5 +1,7 @@
-import styled from "styled-components";
-
+import styled from "styled-components"
+import dropDown from "../../icons/arrow-drop-down.svg"
+import arrowBack from "../../icons/arrow-back.svg"
+import search from "../../icons/search.png"
 // Main page
 export const ShelfList = styled.div`
   padding: 0 0 80px;
@@ -33,8 +35,8 @@ export const BookShelfChanger = styled.div`
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background: LightSkyBlue;
-  background-image: url("./icons/arrow-drop-down.svg");
+  background-color: lightGrey;
+  background-image: url(${dropDown});
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
@@ -55,6 +57,28 @@ export const BookTitle = styled.div`
 export const BookAuthor = styled.div`
   font-size: 0.8em;
   color: #999;
+`;
+
+export const OpenSearch = styled.div`
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  > * > button {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url(${search});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 28px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    font-size: 0;
+    outline: 0;
+    &:hover {
+      background-color: lightGrey;
+    }
+  }
 `;
 
 // Shelf
@@ -111,5 +135,24 @@ export const SearchBooksInputWrapper = styled.div`
     border: none;
     outline: none;
     font-family: 'Monaco', sans-serif;
+  }
+`;
+
+export const CloseSearchButton = styled.button`
+  display: block;
+  top: 20px;
+  left: 15px;
+  width: 50px;
+  height: 53px;
+  background-image: url(${arrowBack});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  font-size: 0;
+  border: none;
+  outline: none;
+  &:active {
+    border: red;
+    outline: none;
   }
 `

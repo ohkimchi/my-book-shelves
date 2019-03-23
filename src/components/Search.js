@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Link } from 'react-router-dom'
-import { SearchBar, SearchResult, SearchBooksInputWrapper } from "./styled-components/StyledElements"
+import { SearchBar, SearchResult, SearchBooksInputWrapper, CloseSearchButton } from "./styled-components/StyledElements"
 import Shelf from './Shelf'
 
 class Search extends Component {
@@ -40,7 +40,7 @@ class Search extends Component {
       <div>
         <SearchBar>
           <Link to="/">
-            <button className="close-search">Close</button>
+            <CloseSearchButton>Close</CloseSearchButton>
           </Link>
           <SearchBooksInputWrapper>
             <input type="text"

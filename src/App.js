@@ -7,7 +7,7 @@ import { getAllDataFromJson, filterBooksByStatus } from './utils/allFuncs'
 import Data from './utils/bookInfoArr.json'
 import Shelf from './components/Shelf'
 import Search from './components/Search'
-import { ShelfList } from './components/styled-components/StyledElements';
+import { ShelfList, OpenSearch } from './components/styled-components/StyledElements';
 
 class BooksApp extends Component {
   constructor() {
@@ -56,11 +56,11 @@ class BooksApp extends Component {
                 { this.displayAllShelves() }
               </div>
             </ShelfList>
-            <div className="open-search">
+            <OpenSearch>
               <Link to='/search'>
                 <button>Search a book</button>
               </Link>
-            </div>
+            </OpenSearch>
           </div>
         )} />
         <Route path='/search' render={() => (
