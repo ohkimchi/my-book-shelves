@@ -1,5 +1,4 @@
 export const filterBooksByStatus = data => {
-  console.log(data)
   let reading = [], toRead = [], haveRead = [], noneDefined = [];
   if (data !== []) {
     data.map(d => {
@@ -26,46 +25,11 @@ export const filterBooksByStatus = data => {
   return [reading, toRead, haveRead, noneDefined];
 }
 
-export const translateChinToEng = chin => {
-  let eng = "";
-  switch (chin) {
-    case "currentlyReading":
-      eng = "Currently Reading";
-      break;
-    case "想读":
-      eng = "wantToRead";
-      break;
-    case "read":
-      eng = "Read";
-      break;
-    case "NoneDefined":
-      eng = "None";
-      break;
-    default:
-      eng = "None";
-      break;
-  }
-  return eng;
-}
-
-export const translateEngToChin = eng => {
-  let chin = "";
-  switch (eng) {
-    case "Currently Reading":
-      chin = "在读";
-      break;
-    case "Want to Read":
-      chin = "想读";
-      break;
-    case "Read":
-      chin = "读过";
-      break;
-    case "None":
-      chin = "NoneDefined";
-      break;
-    default:
-      chin = "NoneDefined";
-      break;
-  }
-  return chin;
+export const getAuthors = arr => {
+  let res = "";
+  res = arr === [] ? res : arr.map((d, index) => {
+    res = index !== arr.length - 1 ? res+d+", " : res+d;
+    return res;
+  });
+  return res;
 }

@@ -1,20 +1,18 @@
 import React from "react";
 import { BookShelf, BookShelfTitle, BookShelfBooks } from "./styled-components/StyledElements";
-import { translateChinToEng } from '../utils/allFuncs';
 import Book from './Book';
 
 const Shelf = props => {
   const { shelfType, onShelfChange, BookInfoArray } = props;
-  const shelfTypeEng = translateChinToEng(shelfType);
 
   return (
     <BookShelf>
-      <BookShelfTitle>{`${shelfTypeEng} (${BookInfoArray.length})`}</BookShelfTitle>
+      <BookShelfTitle>{`${shelfType} (${BookInfoArray.length})`}</BookShelfTitle>
       <BookShelfBooks>
         <ol>
           { BookInfoArray.map((book, index) => {
             return (
-              <li key={`${shelfTypeEng}-${index}-${book.title}`}>
+              <li key={`${shelfType}-${index}-${book.title}`}>
                 <Book info={book} onShelfChange={onShelfChange}/>
               </li>);
           })}

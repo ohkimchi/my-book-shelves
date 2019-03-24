@@ -1,18 +1,16 @@
 import React from 'react';
 import { BookShelfChanger } from './styled-components/StyledElements';
-import { translateEngToChin } from '../utils/allFuncs';
 
 const SelectShelf = (props) => {
   const { shelf, onShelfChange, book } = props;
 
   const handleChange = event => {
-    const newShelf = translateEngToChin(event.target.value);
+    const newShelf = event.target.value;
     const newBook = {
       "title": book.title,
-      "author": book.author,
+      "author": book.authors,
       "shelf": newShelf,
-      "when": book.when,
-      "thumbnail": book.thumbnail
+      "thumbnail": book.imageLinks.thumbnail
     };
     return onShelfChange(book, newBook);
   }
