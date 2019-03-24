@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { Link } from 'react-router-dom'
 import { SearchBar, SearchResult, SearchBooksInputWrapper, CloseSearchButton } from "./styled-components/StyledElements"
 import Shelf from './Shelf'
+import { getParamsForFetch } from '../utils/allFuncs'
 
 class Search extends Component {
   constructor(props) {
@@ -13,26 +14,39 @@ class Search extends Component {
 
   handleChange = (event) => {
     const inputStr = event.target.value;
-    this.setState({
-      updatedData: this.getTargetData(inputStr)
-    });
+    this.getTargetData(inputStr)
+  }
+
+  combineSearchRes = (dataBooks, res) => {
+    return [...dataBooks, ...res];
   }
 
   getTargetData = (inputStr) => {
+    const params = getParamsForFetch();
+    const { api, headers } = params;
+
     const inputStrArr = inputStr.split(' ');
-    const res = [];
-    inputStrArr.map((inp, index) => {
-      const tempData = inp !== '' ? this.props.data.filter(d =>
-        (d.title.toLowerCase().includes(inp.toLowerCase()) ||
-          d.author.toLowerCase().includes(inp.toLowerCase()))) : [];
-      if (tempData !== []) {
-        tempData.map(d => {
-          return !res.includes(d) && res.push(d);
-        });
+    let res = [];
+    let inp;
+    for (inp in inputStrArr) {
+      if (inp !== '') {
+        fetch(`${api}/search`, {
+          method: 'POST',
+          headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ inp })
+        }).then(res => res.json())
+          .then(data => this.combineSearchRes(data.books, res))
+          .catch(err => {
+            console.log("No data was found");
+          })
       }
-      return res;
-    })
-    return res;
+      this.setState({
+        updatedData: res
+      });
+    }
   }
 
   render() {

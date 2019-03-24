@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { Link, Route } from 'react-router-dom'
 import './App.css'
-import { filterBooksByStatus } from './utils/allFuncs'
+import { getParamsForFetch, filterBooksByStatus, translatToShelfOnMainPage } from './utils/allFuncs'
 import Shelf from './components/Shelf'
 import Search from './components/Search'
 import { ListBooksTitle, ShelfList, OpenSearch } from './components/styled-components/StyledElements';
@@ -18,15 +18,8 @@ class BooksApp extends Component {
   }
 
   componentDidMount() {
-    const api = "https://reactnd-books-api.udacity.com"
-    let token = localStorage.token
-    if (!token) {
-      token = localStorage.token = Math.random().toString(36).substr(-8)
-    }
-    const headers = {
-      'Accept': 'application/json',
-      'Authorization': token
-    }
+    const params = getParamsForFetch();
+    const { api, headers } = params;
     fetch(`${api}/books`, { headers })
       .then(res => res.json())
       .then(data => this.setState({
@@ -35,15 +28,17 @@ class BooksApp extends Component {
       }))
   }
 
-  onShelfChange = (oldBookInfo, book) => {
-    let oldUpdatedData = this.state.updatedData;
-    let index = oldUpdatedData.indexOf(oldBookInfo);
-    if (~index) {
-      oldUpdatedData[index] = book;
-    }
-    this.setState({
-      updatedData: oldUpdatedData
-    });
+  onShelfChange = (book, shelf) => {
+    const params = getParamsForFetch();
+    const { api, headers } = params;
+    fetch(`${api}/books/${book.id}`, {
+      method: 'PUT',
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ shelf })
+    }).then(res => res.json())
   }
 
   displayAllShelves = () => {
@@ -51,7 +46,7 @@ class BooksApp extends Component {
     const allShelves = shelves.map(shelf => {
       return shelf.length === 0 ? [] :
         (<Shelf key={`shelf-${shelf[0].shelf}`}
-                shelfType={shelf[0].shelf}
+                shelfType={translatToShelfOnMainPage(shelf[0].shelf)}
                 BookInfoArray={shelf}
                 onShelfChange={this.onShelfChange} />)
     });

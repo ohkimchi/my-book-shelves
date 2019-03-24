@@ -6,13 +6,7 @@ const SelectShelf = (props) => {
 
   const handleChange = event => {
     const newShelf = event.target.value;
-    const newBook = {
-      "title": book.title,
-      "author": book.authors,
-      "shelf": newShelf,
-      "thumbnail": book.imageLinks.thumbnail
-    };
-    return onShelfChange(book, newBook);
+    return onShelfChange(book, newShelf);
   }
 
 

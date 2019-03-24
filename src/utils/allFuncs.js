@@ -25,6 +25,28 @@ export const filterBooksByStatus = data => {
   return [reading, toRead, haveRead, noneDefined];
 }
 
+export const translatToShelfOnMainPage = shelf => {
+  let name = "";
+  switch(shelf) {
+    case "currentlyReading":
+      name = "Currently Reading";
+      break;
+    case "wantToRead":
+      name = "Want To Read";
+      break;
+    case "read":
+      name = "Read";
+      break;
+    case "NoneDefined":
+      name = "No Shelf Yet";
+      break;
+    default:
+      name = "No Shelf Yet";
+      break;
+  }
+  return name;
+}
+
 export const getAuthors = arr => {
   let res = "";
   res = arr === [] ? res : arr.map((d, index) => {
@@ -32,4 +54,17 @@ export const getAuthors = arr => {
     return res;
   });
   return res;
+}
+
+export const getParamsForFetch = () => {
+  const api = "https://reactnd-books-api.udacity.com"
+  let token = localStorage.token
+  if (!token) {
+    token = localStorage.token = Math.random().toString(36).substr(-8)
+  }
+  const headers = {
+    'Accept': 'application/json',
+    'Authorization': token
+  }
+  return { "api": api, "headers": headers };
 }
