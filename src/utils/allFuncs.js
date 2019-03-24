@@ -1,46 +1,41 @@
-export const getAllDataFromJson = data => {
-  let dataArray = [];
-  data.map(d => {
-    return dataArray.push(d);
-  });
-  return dataArray;
-};
-
 export const filterBooksByStatus = data => {
+  console.log(data)
   let reading = [], toRead = [], haveRead = [], noneDefined = [];
-  data.map(d => {
-    switch (d.shelf) {
-      case "在读":
-        reading.push(d);
-        break;
-      case "想读":
-        toRead.push(d);
-        break;
-      case "读过":
-        haveRead.push(d);
-        break;
-      case "NoneDefined":
-        noneDefined.push(d);
-        break;
-      default:
-        noneDefined.puhs(d);
-        break;
-    }
-    return (reading, toRead, haveRead, noneDefined);
-  });
+  if (data !== []) {
+    data.map(d => {
+      switch (d.shelf) {
+        case "currentlyReading":
+          reading.push(d);
+          break;
+        case "wantToRead":
+          toRead.push(d);
+          break;
+        case "read":
+          haveRead.push(d);
+          break;
+        case "NoneDefined":
+          noneDefined.push(d);
+          break;
+        default:
+          noneDefined.puhs(d);
+          break;
+      }
+      return (reading, toRead, haveRead, noneDefined);
+    });
+  }
   return [reading, toRead, haveRead, noneDefined];
 }
 
 export const translateChinToEng = chin => {
   let eng = "";
   switch (chin) {
-    case "在读":
+    case "currentlyReading":
       eng = "Currently Reading";
       break;
     case "想读":
-      eng = "Want to Read";
+      eng = "wantToRead";
       break;
-    case "读过":
+    case "read":
       eng = "Read";
       break;
     case "NoneDefined":

@@ -1,10 +1,8 @@
 /* eslint import/no-webpack-loader-syntax: off */
 import React, { Component } from 'react'
 import { Link, Route } from 'react-router-dom'
-import SimpleStorage from 'react-simple-storage'
 import './App.css'
-import { getAllDataFromJson, filterBooksByStatus } from './utils/allFuncs'
-import Data from './utils/bookInfoArr.json'
+import { filterBooksByStatus } from './utils/allFuncs'
 import Shelf from './components/Shelf'
 import Search from './components/Search'
 import { ListBooksTitle, ShelfList, OpenSearch } from './components/styled-components/StyledElements';
@@ -13,10 +11,28 @@ class BooksApp extends Component {
   constructor() {
     super();
     this.state = {
-      updatedData: getAllDataFromJson(Data),
-      allShelves: filterBooksByStatus(getAllDataFromJson(Data))
+      updatedData: [],
+      allShelves: []
     };
     this.onShelfChange = this.onShelfChange.bind(this);
+  }
+
+  componentDidMount() {
+    const api = "https://reactnd-books-api.udacity.com"
+    let token = localStorage.token
+    if (!token) {
+      token = localStorage.token = Math.random().toString(36).substr(-8)
+    }
+    const headers = {
+      'Accept': 'application/json',
+      'Authorization': token
+    }
+    fetch(`${api}/books`, { headers })
+      .then(res => res.json())
+      .then(data => this.setState({
+        updatedData: data.books,
+        allShelves: filterBooksByStatus(data.books)
+      }))
   }
 
   onShelfChange = (oldBookInfo, book) => {
@@ -45,7 +61,6 @@ class BooksApp extends Component {
   render() {
     return (
       <div className="app">
-        <SimpleStorage parent={this} />
         <Route exact path='/' render={() => (
           <div className="list-books">
             <ListBooksTitle>
